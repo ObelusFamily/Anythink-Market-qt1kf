@@ -4,32 +4,30 @@ import { connect } from "react-redux";
 import agent from "../../agent";
 
 const mapStateToProps = (state) => ({
-  ...state.itemList
+  ...state.itemList,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  
-});
-
-
+const mapDispatchToProps = (dispatch) => ({});
 
 const Banner = (props) => {
-console.log('props: ', props);
+  console.log("props: ", props);
 
   const handleSearch = (ev) => {
     const title = ev.target.value;
-    if (title.length >=3 ) {
-    props.onSearchTitle(
-      title,
-       (page) => agent.Items.byTitle(title, page),
-       agent.Items.byTitle(title))
-    }
-    else if (title.length === 0) {
-      props.onSearchTitle(title, 
+    if (title.length >= 3) {
+      props.onSearchTitle(
+        title,
+        (page) => agent.Items.byTitle(title, page),
+        agent.Items.byTitle(title)
+      );
+    } else if (title.length === 0) {
+      props.onSearchTitle(
+        title,
         (page) => agent.Items.all(page),
-      agent.Items.all())
+        agent.Items.all()
+      );
     }
-  }
+  };
 
   return (
     <div className="banner text-white">
@@ -37,8 +35,14 @@ console.log('props: ', props);
         <img src={logo} alt="banner" />
         <div>
           <span id="get-part">A place to get</span>
-          <span><input type="text" id="search-box" minLength="3" 
-          onChange={handleSearch}/></span>
+          <span>
+            <input
+              type="text"
+              id="search-box"
+              minLength="3"
+              onChange={handleSearch}
+            />
+          </span>
           <span> the cool stuff.</span>
         </div>
       </div>
